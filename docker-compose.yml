@@ -6,14 +6,22 @@ services:
       - "11434:11434"
     volumes:
       - ollamaData:/root/.ollama
+    networks:
+      - si-teste-tecnico
 
   microservico-python:
-    container_name: microservico_llm
+    container_name: microservico-python
     build: .
     ports:
       - "8000:8000"
     depends_on:
       - ollama
+    networks:
+      - si-teste-tecnico
 
 volumes:
   ollamaData:
+
+networks:
+  si-teste-tecnico:
+    name: si-teste-tecnico
